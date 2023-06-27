@@ -3,7 +3,7 @@
 Running the main in Runner will print the Market Info for all days of trading and all tickers.
 
 
-needs to be set. MarketInfo contains all methods to display daily values for open price, close price, highest price, lowest price and daily traded volume for all tickers and the index. These are:
+MarketInfo contains all methods to display daily values for open price, close price, highest price, lowest price and daily traded volume for all tickers and the index. These are:
 
   printDailyMarketInfo(String day)
   Prints the daily values for all tickers.
@@ -22,7 +22,7 @@ needs to be set. MarketInfo contains all methods to display daily values for ope
 
 If starting from scratch:
 
-Before creating a MarketInfo object, which will create and store a list of all market information, the inputFile needs to be read with the CSVReader and a DateTimeFormat needs to  be set.
+Before creating a MarketInfo object, which will create and store a list of all market information, the inputFile needs to be read with the CSVReader and a DateTimeFormat needs to be set.
 After then reading the file with readListOfTrades(), a HashMap to calculate the index ticker needs to be instanciated. Then a new MarketObject can be instanciated,
 with the List of Trades and HasHMap as arguments. Then calling createCompleteMarketInfo() on the MarketInfo object will determine the market information for
 each ticker and each day. The methods mentioned above can then be used to display this information.
