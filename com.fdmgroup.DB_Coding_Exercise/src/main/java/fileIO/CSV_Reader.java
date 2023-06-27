@@ -5,20 +5,31 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.fdmgroup.DB_Coding_Exercise.model.Trade;
 
-public class CSV_Reader {
+/**
+ * 
+ * Reads InputFiles and returns a list of all trades
+ * 
+ * @param inputFileName inputFileName stores the Path of the input File
+ * 
+ * @author Morten 
+ * 
+ */
 
-	private final String inputFileName;
-	private final SimpleDateFormat format;
+public class CSV_Reader {
 	
-	public CSV_Reader(String inputFileName, SimpleDateFormat format) {
+	
+	
+	private final String inputFileName;
+	private final DateTimeFormatter format;
+
+	public CSV_Reader(String inputFileName, DateTimeFormatter format) {
 		super();
 		this.inputFileName = inputFileName;
 		this.format = format;
@@ -29,17 +40,18 @@ public class CSV_Reader {
 		BufferedReader in = readFile();
 		try {
 			String line = in.readLine();
-			while (line!=null) {
+			while (line != null) {
 				tradeList.add(readOutTrade(line));
-				line = in.readLine();
+				line = in.readLine();	
 			}
+			in.close();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		} 
 		return tradeList;
 
 	}
-	
+
 	public BufferedReader readFile() {
 		File inputFile = new File(inputFileName);
 		FileReader reader;
@@ -49,24 +61,19 @@ public class CSV_Reader {
 			return in;
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-		}
+		} 
 		return null;
 	}
-	
+
 	public Trade readOutTrade(String line) {
 		Trade trade;
 		String[] tradeInfo = line.split(";");
-		try {
-			Date tradeDate = format.parse(tradeInfo[0]);
-			String index= tradeInfo[1];
-			Double price = Double.parseDouble(tradeInfo[2].replace(",", "."));
-			int volume = Integer.parseInt(tradeInfo[3]);
-			trade = new Trade(tradeDate, index, price, volume);
-			return trade;
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		
-		return null;
+		LocalDateTime tradeDate;
+		tradeDate = LocalDateTime.parse(tradeInfo[0], format);
+		String index = tradeInfo[1];
+		Double price = Double.parseDouble(tradeInfo[2].replace(",", "."));
+		int volume = Integer.parseInt(tradeInfo[3]);
+		trade = new Trade(tradeDate, index, price, volume);
+		return trade;
 	}
 }

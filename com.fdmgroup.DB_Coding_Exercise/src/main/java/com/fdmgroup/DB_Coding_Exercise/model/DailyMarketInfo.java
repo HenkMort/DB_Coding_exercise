@@ -1,23 +1,32 @@
 package com.fdmgroup.DB_Coding_Exercise.model;
 
+/**
+ * Stores the market info for each day and each ticker
+ * 
+ * Includes the customToString, which is used to transfer the Market Info
+ * into a readable format
+ * 
+ * @author Morten Henken
+ */
+
 public class DailyMarketInfo {
 	
 	private final String ticker;
 	private final String date;
-	
+
 	private Double openPrice;
-	private Double closingPrice;
+	private Double closePrice;
 	private Double lowestPrice;
 	private Double highestPrice;
 	private Double tradedVolume;
-	
-	public DailyMarketInfo(String ticker, String date, Double openPrice, Double closingPrice, Double lowestPrice,
+
+	public DailyMarketInfo(String ticker, String date, Double openPrice, Double closePrice, Double lowestPrice,
 			Double highestPrice, Double tradedVolume) {
 		super();
 		this.ticker = ticker;
 		this.date = date;
 		this.openPrice = openPrice;
-		this.closingPrice = closingPrice;
+		this.closePrice = closePrice;
 		this.lowestPrice = lowestPrice;
 		this.highestPrice = highestPrice;
 		this.tradedVolume = tradedVolume;
@@ -31,12 +40,12 @@ public class DailyMarketInfo {
 		this.openPrice = openPrice;
 	}
 
-	public Double getClosingPrice() {
-		return closingPrice;
+	public Double getClosePrice() {
+		return closePrice;
 	}
 
-	public void setClosingPrice(Double closingPrice) {
-		this.closingPrice = closingPrice;
+	public void setClosePrice(Double closingPrice) {
+		this.closePrice = closingPrice;
 	}
 
 	public Double getLowestPrice() {
@@ -70,7 +79,28 @@ public class DailyMarketInfo {
 	public String getDate() {
 		return date;
 	}
-	
-	
-	
+
+	public String customToString() {
+		if(openPrice>0) {
+		
+		return "DailyMarketInfo \n" + "Ticker: " + ticker + "\n"
+				+ "Date: " + date + "\n"
+				+ "___________________________\n"
+				+ "openPrice: " + openPrice + "\n"
+				+ "closePrice: " + closePrice + "\n"
+				+ "lowestPrice: " + lowestPrice + "\n"
+				+ "highestPrice: " + highestPrice + "\n"
+				+ "tradedVolume: " + tradedVolume + "\n";
+		} else {
+			return "DailyMarketInfo \n" + "Ticker: " + ticker + "\n"
+					+ "Date: " + date + "\n"
+					+ "___________________________\n"
+					+ "openPrice: N/A\n"
+					+ "closePrice: N/A\n"
+					+ "lowestPrice: N/A\n"
+					+ "highestPrice: N/A\n"
+					+ "tradedVolume: 0\n";
+		}
+	}
+
 }
