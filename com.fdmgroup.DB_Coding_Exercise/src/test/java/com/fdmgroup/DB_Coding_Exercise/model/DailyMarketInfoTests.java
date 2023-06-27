@@ -25,4 +25,23 @@ public class DailyMarketInfoTests {
 		assertEquals(expectedResult, testInfo.customToString());
 	}
 	
+	@Test
+	public void test_customToString_printsExpectedStringIfDefaultNegativeValueIsPassed() {
+
+		DailyMarketInfo testInfo = new DailyMarketInfo("Ticker", "Day", -0.1, -0.1, -0.1, -0.1, -0.1);
+
+		testInfo.customToString();
+		String expectedResult = "DailyMarketInfo \n"
+				+ "Ticker: Ticker\n"
+				+ "Date: Day\n"
+				+ "___________________________\n"
+				+ "openPrice: N/A\n"
+				+ "closePrice: N/A\n"
+				+ "lowestPrice: N/A\n"
+				+ "highestPrice: N/A\n"
+				+ "tradedVolume: 0\n";
+		
+		assertEquals(expectedResult, testInfo.customToString());
+	}
+	
 }
