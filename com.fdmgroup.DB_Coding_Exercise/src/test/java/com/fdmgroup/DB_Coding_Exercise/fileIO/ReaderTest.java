@@ -24,7 +24,7 @@ public class ReaderTest {
 
 	@Test
 	public void test_Reader_FileRead_doesNotReadsFileWithInCorrectPathPassed() {
-		CSV_Reader reader = new CSV_Reader(".\\fake.csv",null);
+		CSV_Reader reader = new CSV_Reader(".\\fake.csv", null);
 		BufferedReader result = reader.readFile();
 		assertTrue(result == null);
 	}
@@ -42,6 +42,14 @@ public class ReaderTest {
 	public void test_Reader_readAllTrades_returnsListWithAllTradesFromFile() {
 		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
 		CSV_Reader reader = new CSV_Reader(".\\src\\test\\resources\\test.csv", format);
+		List<Trade> resultList = reader.readListOfTrades();
+		assertEquals(resultList.size(), 173);
+	}
+	
+	@Test
+	public void test_Reader_readAllTrades_returnsListWithAllTradesFromFile_withDifferentDateTimeFormat() {
+		DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+		CSV_Reader reader = new CSV_Reader(".\\src\\test\\resources\\test_different_date_format.csv", format);
 		List<Trade> resultList = reader.readListOfTrades();
 		assertEquals(resultList.size(), 173);
 	}

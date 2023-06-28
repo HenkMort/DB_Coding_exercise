@@ -46,6 +46,18 @@ public class MarketInfoTests {
 		HashMap<String, Double> indexCalculation = new HashMap<String, Double>();
 		MarketInfo info = new MarketInfo(tradeList, indexCalculation);
 		assertEquals(2, info.getAllTradingDays().size());
+		assertEquals("01.06.2023", info.getAllTradingDays().first());
+	}
+	
+	@Test
+	public void test_MarketInfo_getAllTradingDays_returnsListWithAllDaysOnWhichTradesWhereMade_withDifferentDateTimeFormat() {
+		format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+		reader = new CSV_Reader(".\\src\\test\\resources\\test_different_date_format.csv", format);
+		List<Trade> tradeList = reader.readListOfTrades();
+		HashMap<String, Double> indexCalculation = new HashMap<String, Double>();
+		MarketInfo info = new MarketInfo(tradeList, indexCalculation);
+		assertEquals(2, info.getAllTradingDays().size());
+		assertEquals("01.06.2023", info.getAllTradingDays().first());
 	}
 
 	@Test

@@ -24,8 +24,6 @@ import com.fdmgroup.DB_Coding_Exercise.model.Trade;
 
 public class CSV_Reader {
 	
-	
-	
 	private final String inputFileName;
 	private final DateTimeFormatter format;
 
