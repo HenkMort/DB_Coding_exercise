@@ -1,6 +1,6 @@
 # DB_Coding_exercise
 
-Running the main in Runner will print the Market Info for all days of trading and all tickers.
+Running the main in Runner will print the Market Info for all days of trading and all tickers and save them to an outputFile called output.csv.
 
 
 MarketInfo contains all methods to display daily values for open price, close price, highest price, lowest price and daily traded volume for all tickers and the index. These are:
@@ -19,6 +19,12 @@ MarketInfo contains all methods to display daily values for open price, close pr
 
   
   The date format of the print is "dd.MM.yyyy", which is also required for the input-Strings of the above mentioned methods.
+
+  MarketInfo also contains the method to direct the CSVWriter to write the DailyMarketInfo into a file:
+
+  writeToFile(String filePath):
+
+  File path is required as input to create the CSVWriter. Output will be in "dd.MM.yyyy" format for Date and with "," separation for doubles.
 
 If starting from scratch:
 
