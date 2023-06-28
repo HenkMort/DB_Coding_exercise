@@ -1,5 +1,8 @@
 # DB_Coding_exercise
 
+This is the ReadMe for my project for the DB coding exercise. The task was to take data from a CSV file and retrieve information about the daily value of different market information.
+These where defined as the open price, close price, highest price, lowest price and daily traded volume for all tickers and the index.
+
 Running the main in Runner will print the Market Info for all days of trading and all tickers and save them to an outputFile called output.csv.
 
 
