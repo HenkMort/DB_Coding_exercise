@@ -8,6 +8,7 @@ import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import comparators.DayStringComparator;
+import fileIO.CSV_Writer;
 
 public class MarketInfo {
 	
@@ -133,6 +134,11 @@ public class MarketInfo {
 	
 	public void printAllMarketInfo() {
 		dailies.forEach(daily -> System.out.println(daily.customToString()));
+	}
+	
+	public void writeToFile(String filePath) {
+		CSV_Writer writer = new CSV_Writer(filePath, dailies);
+		writer.writeInfoToCSVFile();
 	}
 
 }

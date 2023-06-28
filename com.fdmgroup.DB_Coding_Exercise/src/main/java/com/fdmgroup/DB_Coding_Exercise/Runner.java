@@ -25,7 +25,9 @@ public class Runner {
 		MarketInfo marketInfo = new MarketInfo(tradeList, indexCalculation);
 		marketInfo.createCompleteMarketInfo();
 		marketInfo.printAllMarketInfo();
-
+		
+		marketInfo.writeToFile("./target/output.csv");
+		
 	}
 
 }
